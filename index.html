@@ -1,0 +1,614 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <title>3PL</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Keywords used in the website -->
+    <meta name="keywords" content="Three Pointer League, 3PL, Sports Betting League, SBL, Nolan Sankey">
+    
+    <!-- Description for Website -->
+    <meta name="description" content="The official website for 3PL and SBL">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap.css -->
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Inline CSS - Enhanced sporty design -->
+    <style>
+      :root {
+        --primary-color: #1e3a8a; /* Deep blue */
+        --secondary-color: #be123c; /* Sports red */
+        --accent-color: #facc15; /* Gold accent */
+        --light-bg: #f8fafc; /* Light background */
+        --dark-text: #1e293b; /* Dark text */
+        --light-text: #f8fafc; /* Light text */
+        --input-bg: #f1f5f9; /* Input background */
+        --form-shadow: rgba(0, 0, 0, 0.1);
+      }
+
+      html {
+        width: 100%;
+        height: 100%;
+        min-width: fit-content;
+      }
+
+      body {
+        width: 100%;
+        height: 100%;
+        font-size: 16px;
+        font-family: 'Montserrat', sans-serif;
+        color: var(--dark-text);
+        background-color: var(--light-bg);
+        position: relative;
+        line-height: 1.6;
+        /* Added top padding to account for fixed navbar */
+        padding-top: 80px; /* Reduced from 100px to bring login text up */
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+
+      .navbar {
+        background-color: var(--primary-color);
+        color: var(--light-text);
+        padding: 10px 40px;
+        width: 100%;
+        box-shadow: 0 4px 6px var(--form-shadow);
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .header {
+        height: auto;
+        width: 100%;
+        padding: 5px 0;
+        text-align: center;
+      }
+
+      .header-text > h1 {
+        font-size: 3.5rem;
+        color: var(--light-text);
+        margin: 0;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Form styling */
+      .input-box {
+        padding: 12px 15px;
+        border-radius: 4px;
+        border: 1px solid #cbd5e1;
+        background-color: var(--input-bg);
+        width: 100%;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+        margin-top: 4px;
+      }
+
+      .input-box:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2);
+      }
+
+      label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 3px;
+        color: var(--dark-text);
+      }
+
+      input[type="submit"] {
+        background-color: var(--secondary-color);
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.3s;
+        margin-top: 15px;
+        width: 100%;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #9f1239;
+      }
+
+      /* Login and Register Sections - Centered */
+      .login-section, .register-section {
+        text-align: center;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 0 25px 0; /* Reduced top padding from 25px to 15px */
+        margin: 0 auto;
+        max-width: 500px;
+      }
+
+      .login-section h1, .register-section h1 {
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        position: relative;
+        padding-bottom: 10px;
+        margin-top: 0; /* Remove top margin for the heading */
+      }
+
+      .login-section h1::after, .register-section h1::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background-color: var(--accent-color);
+      }
+
+      #login-form, #register-form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 10px 15px -3px var(--form-shadow);
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      /* Added spacing for forgot password link */
+      .forgot-password-container {
+        margin-top: 20px; /* Increased from no specific margin */
+      }
+
+      /* Added spacing for registration note */
+      .registration-note {
+        margin-top: 20px; /* Increased from no specific margin */
+      }
+
+      /* Intro text styling */
+      .intro-text {
+        text-align: left;
+        max-width: 800px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 10px 15px -3px var(--form-shadow);
+        margin: 0 auto 20px auto;
+        width: 100%;
+      }
+
+      .intro-text h4 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .intro-text p {
+        margin-bottom: 10px;
+        line-height: 1.7;
+      }
+
+      .intro-text strong {
+        color: var(--secondary-color);
+      }
+
+      /* Forgot password */
+      #forgot-pw-message {
+        background-color: #fee2e2;
+        border-left: 4px solid var(--secondary-color);
+        padding: 15px;
+        color: #991b1b;
+        border-radius: 4px;
+        margin-top: 10px;
+        font-size: 0.9rem;
+      }
+
+      a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      a:hover {
+        color: var(--secondary-color);
+        text-decoration: underline;
+      }
+
+      /* Password table */
+      .password-table-section {
+        text-align: center;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        padding: 25px 0;
+        background-color: white;
+        margin: 20px auto;
+        border-radius: 8px;
+        box-shadow: 0 10px 15px -3px var(--form-shadow);
+        max-width: 800px;
+      }
+
+      .password-table-section h1 {
+        color: var(--primary-color);
+        margin-bottom: 15px;
+      }
+
+      table {
+        margin: 0 auto;
+        color: var(--dark-text);
+        background: white;
+        border: 1px solid #cbd5e1;
+        font-size: 0.9rem;
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 600px;
+      }
+
+      table th {
+        background-color: var(--primary-color);
+        color: white;
+        text-align: left;
+        padding: 12px 15px;
+        font-weight: 600;
+      }
+
+      table td {
+        padding: 10px 15px;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      table tr:nth-child(even) {
+        background-color: #f8fafc;
+      }
+
+      table tr:hover {
+        background-color: #f1f5f9;
+      }
+
+      /* Remove unnecessary <br> margins */
+      br {
+        line-height: 0;
+        content: '';
+        margin: 3px 0;
+        display: block;
+      }
+
+      /* Enhanced Mobile responsiveness - Optimized for iPhone */
+      @media (max-width: 768px) {
+        body {
+          padding-top: 75px; /* Adjusted for smaller navbar on mobile */
+        }
+        
+        .navbar {
+          padding: 10px 20px;
+        }
+        
+        .header-text > h1 {
+          font-size: 2.2rem;
+        }
+        
+        .header-text > h1::before,
+        .header-text > h1::after,
+        .header-text > h1 .sport_logo {
+          margin: 0 5px;
+          font-size: 1.5rem;
+        }
+          
+        .header-text > h1 .sport_logo_smaller {
+          margin: 0 5px;
+          font-size: 1.3rem;
+        }
+
+        .login-section, .register-section {
+          padding: 10px 15px 20px 15px; /* Reduced top padding further */
+          width: 100%;
+        }
+
+        .field, #login-form, #register-form {
+          width: 100%;
+          max-width: none;
+          padding: 10px;
+        }
+
+        .intro-text {
+          padding: 15px;
+          margin: 0 15px 15px 15px;
+          width: calc(100% - 30px);
+        }
+
+        input[type="text"], 
+        input[type="password"],
+        input[type="submit"], 
+        select {
+          width: 100%;
+          font-size: 16px; /* Prevents iOS zoom on input focus */
+          padding: 10px;
+        }
+        
+        label {
+          font-size: 14px;
+        }
+        
+        .password-table-section {
+          margin: 15px;
+          padding: 15px 10px;
+          width: calc(100% - 30px);
+        }
+        
+        table {
+          font-size: 0.8rem;
+        }
+        
+        table th, table td {
+          padding: 8px 10px;
+        }
+      }
+      
+      /* iPhone-specific optimizations */
+      @media (max-width: 428px) { /* iPhone Pro Max width */
+        body {
+          -webkit-text-size-adjust: 100%; /* Prevents iOS text size adjust */
+          padding-top: 65px; /* Further reduced for smaller screens */
+        }
+        
+        .header-text > h1 {
+          font-size: 1.8rem;
+        }
+        
+        input, select, textarea {
+          font-size: 16px !important; /* Prevents iOS zoom on input */
+        }
+        
+        /* Fix for iOS input issues */
+        input[type="submit"] {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          border-radius: 4px;
+        }
+      }
+    </style>
+      
+  </head>
+    
+  <body id="page-top" data-spy="scroll" data-target=".navbar fixed-top">
+    <nav class="navbar navbar-fixed-top" role="navigation">
+      <div class="header">
+        <div class="header-text">
+          <h1><span class="sport_logo">🏈</span><span class="sport_logo">🏀</span><strong> &nbsp; 3PL &nbsp; </strong><span class="sport_logo_smaller">⚾</span><span class="sport_logo">🏒</span></h1>
+          <p id="user-note"></p>
+        </div>
+      </div>   
+    </nav>
+
+    <!-- Login Section -->
+    <section id="login" class="login-section">
+      <h1>Login</h1>
+      <div>
+        <form id="login-form">
+          <div class="field name-entry">
+            <label for="login-name-select">Name</label>
+            <select id="login-name-select" name="login-name-select" class="input-box">
+              <option value="Default">Select your name</option>
+            </select>
+          </div> 
+          <div class="field password-entry">
+            <label for="password-typed">Password</label>
+            <input type="password" id="password-typed" name="password-typed" class="input-box" required placeholder="Enter your password" />
+            <br>
+            <input type="submit" id="login-submit" value="Login to 3PL">
+          </div>
+        </form>
+      </div>
+      <!-- Added container with margin for forgot password link -->
+      <div class="forgot-password-container">
+        <p><a href="javascript:void(0);" onclick="forgotPW()"><i class="fa fa-question-circle"></i> Forgot Password?</a></p>
+        <p id="forgot-pw-message">You Fool! Text Nolan and he can help you log in or reset your password.</p>
+      </div>
+    </section>
+      
+    <!-- Register Section -->
+    <section id="register" class="register-section">
+      <h1>Register</h1>
+        <div class="intro-text">
+          <h4>Welcome to Three Pointer League Season 14!</h4>
+            <p><strong>How to play: </strong> Each day, you will answer 3 questions about that day's sporting events (ex. Will the San Francisco 49ers beat the Kansas City Chiefs? Will the Denver Nuggets and Boston Celtics combine for 225 or more points? Will Connor McDavid score a goal in tonight's game?).</p>
+            <p>For each question you get right, you will earn a point. If you correctly answer all three, you make a <i>Three Pointer</i> and earn another 3 points for a total of 6.</p>
+            <p>The top players each week earn payouts and there are also season-long prizes.</p>
+            <p><strong>Buy in: </strong>$25 ($20 + $5 league admin fee) for the 5 week season</p>
+        </div>
+      <div>
+        <form method="POST" action="https://script.google.com/macros/s/AKfycbymsYWV3EiB-sJIVoYlzCpwpBd6MEDAz1M0CaHgPbphox-DuWYeB3UY8ZmHj9OI-wCz/exec" id="register-form" >
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="Name" class="input-box" required placeholder="Enter your full name"/>
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="Number" class="input-box" placeholder="Enter your phone number"/>
+          </div>
+          <div class="field">
+            <label for="venmo">Venmo Username</label>
+            <input type="text" id="venmo" name="Venmo" class="input-box" required placeholder="@your-venmo-username"/>
+          </div>
+          <div class="field">
+            <label for="invite">Referred By (if applicable)</label>
+            <input type="text" id="invite" name="Invite" class="input-box" placeholder="Who invited you? (if not Nolan)"/>
+          </div>
+          <div class="field">
+            <label for="password">Choose a Password</label>
+            <input type="password" id="password" name="Password" class="input-box" required placeholder="Create a password"/>
+            <p><i>(it can be literally anything. 1 or more letters.)</i></p>
+          </div>
+          <input type="submit" id="register-submit" value="Sign Up">
+          <p id="submit-confirm"></p>
+        </form>
+        <!-- Added container with margin for registration note -->
+        <div class="registration-note">
+          <p><i>NOTE: You will NOT be able to log in until your registration is approved.</i></p>
+        </div>
+      </div>
+    </section>
+      
+    <section id="password-table" class="password-table-section">
+      <h1>Password Table</h1>
+      <table id="passwords-logged">
+        <tr>
+          <th>Name</th>
+          <th>Password</th>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Scripts -->
+    <script>
+        function logout(){
+            localStorage.clear();
+            window.location.replace("index.html");
+        }
+    </script>
+
+    <script>
+        const loginSheetLink = "https://sheets.googleapis.com/v4/spreadsheets/1TF3Cdoi614IKqOoedxqqC4e6HATXZ4WRkZO0342Hnyk/values/Logins/?key=AIzaSyBDAMBO6YH4isbUYYgjK1NF9LwGiur6z-Y";
+        names_data_fetch();
+        
+        async function names_data_fetch(){
+            let login_sheet_data = await fetch(loginSheetLink)    
+              .then((response) => response.json());
+            var num_pw = 32;
+            for (let k = 0; k < num_pw; k++){
+                var name_option = login_sheet_data.values[1+k][0];
+                var user_pw = login_sheet_data.values[1+k][1];
+                var table = document.getElementById("passwords-logged");
+                var row = table.insertRow(k+1); 
+                cell1 = row.insertCell(0);
+                cell1.innerHTML = name_option;
+                cell2 = row.insertCell(1);
+                cell2.innerHTML = user_pw;
+                let newOption = new Option(name_option, name_option);
+                const select = document.getElementById("login-name-select");
+                select.add(newOption,undefined);
+            } 
+        }
+    </script>
+
+    <script>
+        var registration_window = true;
+        if(registration_window) {
+            document.getElementById('login').style.display = 'block';
+            document.getElementById('register').style.display = 'block';
+        }
+        else {
+            document.getElementById('login').style.display = 'block';
+            document.getElementById('register').style.display = 'none';
+        }
+    </script>
+
+    <script>
+        document.getElementById("forgot-pw-message").style.display = "none";
+        function forgotPW() {
+            var x = document.getElementById("forgot-pw-message");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+
+    <script>
+        window.addEventListener("load", function() {
+            var login_form = document.getElementById('login-form');
+            login_form.addEventListener("submit", function(e) {
+                e.preventDefault();
+                const data = new FormData(login_form);
+                entered_un = data.get("login-name-select");
+                entered_pw = data.get("password-typed");
+                searchPwTable(entered_un, entered_pw);
+            });
+        });
+    </script>
+
+    <script>
+        function searchPwTable(un, pw) {
+            var table = document.getElementById("passwords-logged");
+            
+            // Loop through all table rows
+            for (i = 1; i < table.rows.length; i++) {
+                var idx_name = table.rows[i].cells[0].innerText;
+                if (idx_name==un){
+                    var idx_pw = table.rows[i].cells[1].innerText;
+                    if (idx_pw==pw){
+                        localStorage.setItem("logged-in", true);
+                        localStorage.setItem("user", entered_un);
+                        window.location.href = "3pl_home.html";
+                    }
+                }          
+            }
+        }
+    </script>
+
+    <script>
+        window.addEventListener("load", function() {
+            var reg_form = document.getElementById('register-form');
+            reg_form.addEventListener("submit", function(e) {
+                e.preventDefault();
+                document.getElementById("register-submit").disabled=true;
+                const data = new FormData(reg_form);
+                const action = e.target.action;
+                fetch(action, {
+                    method: 'POST',
+                    body: data,
+                })
+                .then(() => {
+                    var r = confirm("Registration Successful. You will be granted the ability to log in soon. Time to get excited for the season!");
+                    if (r == true){
+                        window.location.reload();
+                    }
+                })
+            });
+        });
+    </script>
+
+    <script>
+        var curr_user = localStorage.getItem("user");
+        if(curr_user!="Admin"){
+            document.getElementById('password-table').style.display = 'none';
+        }
+    </script>
+
+    <script>
+        if (window.innerWidth < 766) {
+            document.getElementById("nav").style.display = "none";
+        }
+        function myFunction() {
+            var x = document.getElementById("nav");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+  </body>
+</html>

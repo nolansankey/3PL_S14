@@ -1,0 +1,798 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <title>Three Pointer League</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Keywords used in the website -->
+    <meta name="keywords" content="Three Pointer League, Three Pointer, Nolan Sankey">
+    
+    <!-- Description for Website -->
+    <meta name="description" content="The official website for Three Pointer League">
+    
+    <!-- Bootstrap.css -->
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Inline CSS -->
+    <style>
+      :root {
+        --primary-color: #1e3a8a; /* Deep blue */
+        --secondary-color: #be123c; /* Sports red */
+        --accent-color: #facc15; /* Gold accent */
+        --light-bg: #f8fafc; /* Light background */
+        --dark-text: #1e293b; /* Dark text */
+        --light-text: #f8fafc; /* Light text */
+        --input-bg: #f1f5f9; /* Input background */
+        --form-shadow: rgba(0, 0, 0, 0.1);
+        --green-button: #15803d; /* Green for YES buttons */
+        --red-button: #b91c1c; /* Red for NO buttons */
+        --blue-button: #475569; /* Blue-gray for OPT OUT buttons */
+      }
+
+      html {
+        width: 100%;
+        height: 100%;
+        min-width: fit-content;
+      }
+
+      body {
+        width: 100%;
+        height: 100%;
+        font-size: 16px;
+        font-family: 'Montserrat', sans-serif;
+        color: var(--dark-text);
+        background-color: var(--light-bg);
+        position: relative;
+        line-height: 1.6;
+        padding-top: 120px; /* Account for fixed navbar */
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+
+      .navbar {
+        background-color: var(--primary-color);
+        color: var(--light-text);
+        padding: 10px 40px;
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 6px var(--form-shadow);
+      }
+
+      .navbar-nav {
+        justify-content: center;
+        align-items: center;
+      }
+
+      .header {
+        height: 80px;
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+      }
+
+      .navbar-fixed-top .navbar-collapse {
+        max-height: 600px;
+      }
+
+      .header-text > h1 {
+        font-size: 3.5rem;
+        color: var(--light-text);
+        margin: 0;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .header-text > p {
+        color: var(--light-text);
+        margin-top: 5px;
+      }
+
+      .navbar-collapse {
+        float: none;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .navbar-nav > li {
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .navbar-nav > li > a {
+        color: var(--light-text);
+        font-size: 16px;
+        font-weight: 600;
+        justify-content: center;
+        align-items: center;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: color 0.3s;
+        padding: 8px 15px;
+      }
+
+      .navbar-nav > li > a:hover {
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+
+      .mobile-nav-button {
+        color: var(--light-text);
+        display: none;
+        height: 20px;
+      }
+
+      .icon {
+        padding: 20px;
+      }
+
+      .welcome-section {
+        text-align: center;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+        color: var(--dark-text);
+      }
+
+      .welcome-section h2 {
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .welcome-section h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background-color: var(--accent-color);
+      }
+
+      .home_q_div {
+        background-color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin: 10px 0 20px 0;
+        box-shadow: 0 4px 6px var(--form-shadow);
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .home_q_div h5 {
+        color: var(--secondary-color);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+      }
+
+      .home_q_div h3 {
+        margin-bottom: 5px;
+        color: var(--dark-text);
+      }
+
+      .home_q_div h4 a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .home_q_div h4 a:hover {
+        color: var(--secondary-color);
+        text-decoration: underline;
+      }
+
+      .q_button {
+        float: center;
+        position: relative;
+        display: inline-block;
+        border-radius: 6px;
+        vertical-align: middle;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .already_picked_label {
+        margin: 10px 0;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      .button-input {
+        height: 0px;
+        width: 0px;
+        margin: 0 0;
+      }
+
+      .half_button {
+        width: 45%;
+        height: 45px;
+        margin: 0 0 10px 0;
+      }
+
+      .full_button {
+        width: 91.5%;
+        height: 45px;
+        margin: 0 0 10px 0;
+      }
+
+      .green_button {
+        background-color: var(--green-button);
+        color: white;
+      }
+
+      .green_button:hover {
+        background-color: #166534;
+      }
+
+      .red_button {
+        background-color: var(--red-button);
+        color: white;
+      }
+
+      .red_button:hover {
+        background-color: #991b1b;
+      }
+
+      .blue_button {
+        background-color: var(--blue-button);
+        color: white;
+      }
+
+      .blue_button:hover {
+        background-color: #334155;
+      }
+
+      .q_button label,
+      .q_button input {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        line-height: 45px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .q_button input[type="radio"] {
+        opacity: 0.011;
+        z-index: 100;
+      }
+
+      .big-submit {
+        width: 80%;
+        height: 60px;
+        font-size: 24px;
+        font-weight: 600;
+        border: 0px;
+        background-color: var(--secondary-color);
+        color: white;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.3s;
+        box-shadow: 0 4px 6px var(--form-shadow);
+        cursor: pointer;
+        margin: 10px 0 20px 0;
+      }
+
+      .big-submit:hover {
+        background-color: #9f1239;
+      }
+
+      .todays-picks-section {
+        text-align: center;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        padding: 0 5% 30px 5%;
+      }
+
+      .scores-section {
+        text-align: center;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 5% 60px 5%;
+        background-color: white;
+        margin: 20px auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px var(--form-shadow);
+        max-width: 800px;
+        width: 90%;
+      }
+
+      .scores-section h2 {
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .scores-section h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background-color: var(--accent-color);
+      }
+
+      .user-cell {
+        background-color: #fef3c7;
+      }
+
+      table {
+        margin: 0 auto;
+        color: var(--dark-text);
+        background: white;
+        border: 1px solid #cbd5e1;
+        font-size: 0.9rem;
+        border-collapse: collapse;
+        box-shadow: 0 4px 6px var(--form-shadow);
+        width: 100%;
+      }
+
+      table thead th,
+      table tfoot th {
+        background-color: var(--primary-color);
+        color: white;
+        height: 40px;
+        text-align: left;
+        padding: 10px 15px;
+        font-weight: 600;
+      }
+
+      table caption {
+        padding: .5em;
+      }
+
+      table th, table td {
+        padding: 10px 15px;
+        border: 1px solid #e2e8f0;
+      }
+
+      .wide_col {
+        min-width: 200px;
+        max-width: 200px;
+      }
+
+      .med_col {
+        width: 20%;
+      }
+
+      .green_border {
+        box-shadow: 0 -3px 0 #34d399 inset,
+                    0 3px 0 #34d399 inset,
+                   -3px 0 0 #34d399 inset,
+                   3px 0 0 #34d399 inset;
+      }
+
+      .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        min-width: 400px;
+        width: 100%;
+      }
+
+      .styled-table tbody tr:nth-child(even) {
+        background-color: #f8fafc;
+      }
+
+      .styled-table tbody tr:hover {
+        background-color: #f1f5f9;
+      }
+
+      #below_sub_msg {
+        color: var(--secondary-color);
+        font-weight: 600;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding-top: 140px;
+        }
+        
+        .header {
+          height: auto;
+          padding: 10px 0;
+        }
+        
+        .header-text > h1 {
+          font-size: 2.2rem;
+        }
+        
+        .header-text > h1::before,
+        .header-text > h1::after,
+        .header-text > h1 .sport_logo {
+          margin: 0 5px;
+          font-size: 1.5rem;
+        }
+          
+        .header-text > h1 .sport_logo_smaller {
+          margin: 0 5px;
+          font-size: 1.3rem;
+        }
+        
+        .navbar {
+          padding: 10px 20px;
+        }
+
+        .navbar-collapse {
+          display: flex;
+          flex-direction: column;
+          float: none;
+          width: 100%;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        .navbar-nav > li {
+          display: block;
+          width: 100%;
+          text-align: center;
+          padding: 5px 0;
+        }
+
+        .navbar-nav > li > a {
+          font-size: 16px;
+          text-align: center;
+          display: block;
+          padding: 8px 0;
+        }
+        
+        .mobile-nav-button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 15px;
+        }
+        
+        .scores-section {
+          width: 95%;
+          padding: 20px 10px;
+        }
+        
+        .home_q_div {
+          width: 90%;
+        }
+        
+        .half_button, .full_button {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+        
+        .big-submit {
+          width: 90%;
+        }
+        
+        #nav {
+          display: none;
+        }
+        
+        table {
+          font-size: 0.8rem;
+        }
+        
+        table th, table td {
+          padding: 8px;
+        }
+        
+        .wide_col {
+          min-width: auto;
+          max-width: none;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        body {
+          padding-top: 130px;
+          -webkit-text-size-adjust: 100%;
+        }
+        
+        .header-text > h1 {
+          font-size: 1.8rem;
+        }
+        
+        .big-submit {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          height: 50px;
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+    
+  <!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+  <body id="page-top" data-spy="scroll" data-target=".navbar fixed-top">
+    <nav class="navbar navbar-fixed-top" role="navigation">
+      <div class="header">
+        <div class="header-text">
+          <h1><span class="sport_logo">🏈</span><span class="sport_logo">🏀</span><strong> &nbsp; 3PL &nbsp; </strong><span class="sport_logo_smaller">⚾</span><span class="sport_logo">🏒</span></h1>
+        </div>
+        <h4 id="user-note"></h4>
+      </div>
+      <div class="mobile-nav-button">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <p><i class="fa fa-bars"></i></p>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul id="nav" class="nav navbar-nav">
+          <li><a><strong>Home</strong></a></li>
+          <li><a href="3pl_picks.html">Full Picks</a></li>
+          <li><a href="3pl_stats.html">Statistics</a></li>
+          <li><a href="3pl_payouts.html">Payouts</a></li>
+          <li><a href="3pl_rules.html">Rules</a></li>
+          <li><a href="3pl_history.html">History</a></li>
+          <li><a href="javascript:void(0);" onclick="logout()">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Welcome Section -->
+    <section id="welcome" class="welcome-section">
+      <div id="home_intro_div">
+        <h2><strong>Today's Questions</strong></h2>
+        <h4 id="pick-status"></h4>
+      </div>
+    </section>
+        
+    <!-- Todays Picks Section -->
+    <section id="todays-picks" class="todays-picks-section">
+      <div id="yet-to-pick">
+        <form method="POST" action="https://script.google.com/macros/s/AKfycbxTGjGJ5zYl-qNcIKaNWjz6wTcLjleztzDrp6YtjX1trQSNEMLSlyAud3r28DBE6CElZQ/exec" id="picks-form">
+          <div class="home_q_div">
+            <h5>Question 1</h5>
+            <h3 id="q1_text">Question Error</h3>
+            <h4><a id="q1_link_1" href="javascript:void(0);" onclick="link_error()" rel="noopener noreferrer">(ESPN page)</a></h4>
+            <br>
+            <div id="q1_button_yes" class="q_button half_button green_button">
+              <input type="radio" id="q1_yes" name="Q1" value="yes" class="button-input" required>
+              <label id="q1_yes_label" for="q1_yes" onclick="adj_buttons('1','yes')">YES</label>
+            </div>
+            <div id="q1_button_no" class="q_button half_button red_button">
+              <input type="radio" id="q1_no" name="Q1" value="no" class="button-input" required>
+              <label id="q1_no_label" for="q1_no" onclick="adj_buttons('1','no')">NO</label>
+            </div>
+            <div id="q1_button_opt_out" class="q_button full_button blue_button">
+              <input type="radio" id="q1_opt-out" name="Q1" value="opt out" class="button-input" required>
+              <label id="q1_opt-out_txt" for="q1_opt-out" onclick="adj_buttons('1','opt out')">OPT OUT</label>
+            </div>
+          </div>
+            
+          <div class="home_q_div">
+            <h5>Question 2</h5>
+            <h3 id="q2_text">Question Error</h3>
+            <h4><a id="q2_link_1" href="javascript:void(0);" onclick="link_error()" rel="noopener noreferrer">(ESPN page)</a></h4>
+            <br>
+            <div id="q2_button_yes" class="q_button half_button green_button">
+              <input type="radio" id="q2_yes" name="Q2" value="yes" class="button-input" required>
+              <label id="q2_yes_label" for="q2_yes" onclick="adj_buttons('2','yes')">YES</label>
+            </div>
+            <div id="q2_button_no" class="q_button half_button red_button">
+              <input type="radio" id="q2_no" name="Q2" value="no" class="button-input" required>
+              <label id="q2_no_label" for="q2_no" onclick="adj_buttons('2','no')">NO</label>
+            </div>
+            <div id="q2_button_opt_out" class="q_button full_button blue_button">
+              <input type="radio" id="q2_opt-out" name="Q2" value="opt out" class="button-input" required>
+              <label id="q2_opt-out_txt" for="q2_opt-out" onclick="adj_buttons('2','opt out')">OPT OUT</label>
+            </div>
+          </div>
+            
+          <div class="home_q_div">
+            <h5>Question 3</h5>
+            <h3 id="q3_text">Question Error</h3>
+            <h4><a id="q3_link_1" href="javascript:void(0);" onclick="link_error()" rel="noopener noreferrer">(ESPN page)</a></h4>
+            <br>
+            <div id="q3_button_yes" class="q_button half_button green_button">
+              <input type="radio" id="q3_yes" name="Q3" value="yes" class="button-input" required>
+              <label id="q3_yes_label" for="q3_yes" onclick="adj_buttons('3','yes')">YES</label>
+            </div>
+            <div id="q3_button_no" class="q_button half_button red_button">
+              <input type="radio" id="q3_no" name="Q3" value="no" class="button-input" required>
+              <label id="q3_no_label" for="q3_no" onclick="adj_buttons('3','no')">NO</label>
+            </div>
+            <div id="q3_button_opt_out" class="q_button full_button blue_button">
+              <input type="radio" id="q3_opt-out" name="Q3" value="opt out" class="button-input" required>
+              <label id="q3_opt-out_txt" for="q3_opt-out" onclick="adj_buttons('3','opt out')">OPT OUT</label>
+            </div>
+          </div>
+          <br>
+          <input type="submit" id="pick-submit" class="big-submit" value="Submit" onclick="check_req_submit()">
+        </form>
+      </div>
+        
+      <div id="already-picked">
+        <div class="home_q_div">
+          <h5>Question 1</h5>
+          <h3 id="q1_ap_text">Question Error</h3>
+          <h4><a id="q1_link_2" href="javascript:void(0);" onclick="link_error()" rel="noopener noreferrer">(ESPN page)</a></h4>
+          <br>
+          <div id="q_1_picked_button" class="q_button full_button">
+            <label id="q_1_picked_label" class="already_picked_label"></label>
+          </div>
+        </div>
+              
+        <div class="home_q_div">
+          <h5>Question 2</h5>
+          <h3 id="q2_ap_text">Question Error</h3>
+          <h4><a id="q2_link_2" href="javascript:void(0);" onclick="link_error()" rel="noopener noreferrer">(ESPN page)</a></h4>
+          <br>
+          <div id="q_2_picked_button" class="q_button full_button">
+            <label id="q_2_picked_label" class="already_picked_label"></label>
+          </div>
+        </div>
+         
+        <div class="home_q_div">
+          <h5>Question 3</h5>
+          <h3 id="q3_ap_text">Question Error</h3>
+          <h4><a id="q3_link_2" href="javascript:void(0);" onclick="link_error()" rel="noopener noreferrer">(ESPN page)</a></h4>
+          <br>
+          <div id="q_3_picked_button" class="q_button full_button">
+            <label id="q_3_picked_label" class="already_picked_label"></label>
+          </div>
+        </div>
+        <br>
+        <form method="POST" action="https://script.google.com/macros/s/AKfycbxTGjGJ5zYl-qNcIKaNWjz6wTcLjleztzDrp6YtjX1trQSNEMLSlyAud3r28DBE6CElZQ/exec" id="clear-form">
+          <input type="submit" id="clear-pick-submit" class="big-submit" name="clear" value="Clear Picks">
+        </form>
+      </div>
+      <h4 id="below_sub_msg"></h4>
+    </section>
+      
+    <!-- Scoreboard Section -->
+    <section id="scores-section" class="scores-section">
+      <h2>Scores</h2>
+      <p id="scores_text"></p>
+      <table id="scores_table" class="styled-table">
+        <thead>
+          <tr>
+            <th scope="col" class="wide_col">Name</th>
+            <th scope="col" class="med_col">Score</th>
+            <th scope="col" class="med_col">Change</th>
+            <th scope="col" class="med_col">Picks</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+    
+    <script>
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = mm + '/' + dd + '/' + yyyy;
+    </script>
+
+    <script>
+        var is_logged_in = localStorage.getItem("logged-in");
+        var curr_user = localStorage.getItem("user");
+        document.getElementById("user-note").innerHTML = curr_user;
+        if(!is_logged_in){
+            window.location.replace("index.html");
+        }
+        function logout(){
+            localStorage.clear();
+            window.location.replace("index.html");
+        }
+        function link_error(){
+            var error_msg = confirm("Link error. Sorry :(");
+        }
+        
+        function myFunction() {
+          var x = document.getElementById("nav");
+          if (x.style.display === "block") {
+            x.style.display = "none";
+          } else {
+            x.style.display = "block";
+          }
+        }
+    </script>
+
+    <script>
+        const responsesSheetLink = "https://sheets.googleapis.com/v4/spreadsheets/1TF3Cdoi614IKqOoedxqqC4e6HATXZ4WRkZO0342Hnyk/values/Responses/?key=AIzaSyBDAMBO6YH4isbUYYgjK1NF9LwGiur6z-Y";
+        responses_data_fetch();
+        
+        async function responses_data_fetch(){
+            let responses_data = await fetch(responsesSheetLink)    
+              .then((response) => response.json());
+            var curr_user = localStorage.getItem("user");
+            var has_picked = false;
+            for (let i = 1; i < responses_data.values.length; i++) {
+                player = responses_data.values[i][1]
+                if (player==curr_user){
+                    has_picked = true;
+                    q1_pick = responses_data.values[i][2];
+                    q2_pick = responses_data.values[i][3];
+                    q3_pick = responses_data.values[i][4];
+                }
+            }
+            if (has_picked){
+               if(q1_pick == "yes"){
+                   document.getElementById("q_1_picked_label").innerHTML = "YES";
+                   document.getElementById("q_1_picked_button").setAttribute("class","q_button full_button green_button");
+               }
+               if(q1_pick == "no"){
+                    document.getElementById("q_1_picked_label").innerHTML = "NO";
+                   document.getElementById("q_1_picked_button").setAttribute("class","q_button full_button red_button");
+               }
+               if(q1_pick == "opt out"){
+                    document.getElementById("q_1_picked_label").innerHTML = "OPT OUT";
+                   document.getElementById("q_1_picked_button").setAttribute("class","q_button full_button blue_button");
+                }
+                if(q1_pick == "late"){
+                    document.getElementById("q_1_picked_label").innerHTML = "LATE";
+                   document.getElementById("q_1_picked_button").setAttribute("class","q_button full_button blue_button");
+                }
+                if(q2_pick == "yes"){
+                   document.getElementById("q_2_picked_label").innerHTML = "YES";
+                   document.getElementById("q_2_picked_button").setAttribute("class","q_button full_button green_button");
+               }
+               if(q2_pick == "no"){
+                    document.getElementById("q_2_picked_label").innerHTML = "NO";
+                   document.getElementById("q_2_picked_button").setAttribute("class","q_button full_button red_button");
+               }
+               if(q2_pick == "opt out"){
+                    document.getElementById("q_2_picked_label").innerHTML = "OPT OUT";
+                   document.getElementById("q_2_picked_button").setAttribute("class","q_button full_button blue_button");
+                }
+                if(q2_pick == "late"){
+                    document.getElementById("q_2_picked_label").innerHTML = "LATE";
+                   document.getElementById("q_2_picked_button").setAttribute("class","q_button full_button blue_button");
+                }
+                if(q3_pick == "yes"){
+                   document.getElementById("q_3_picked_label").innerHTML = "YES";
+                   document.getElementById("q_3_picked_button").setAttribute("class","q_button full_button green_button");
+               }
+               if(q3_pick == "no"){
+                    document.getElementById("q_3_picked_label").innerHTML = "NO";
+                   document.getElementById("q_3_picked_button").setAttribute("class","q_button full_button red_button");
+               }
+               if(q3_pick == "opt out"){
+                    document.getElementById("q_3_picked_label").innerHTML = "OPT OUT";
+                   document.getElementById("q_3_picked_button").setAttribute("class","q_button full_button blue_button");
+                }
+                if(q3_pick == "late"){
+                    document.getElementById("q_3_picked_label").innerHTML = "LATE";
+                   document.getElementById("q_3_picked_button").setAttribute("class","q_button full_button blue_button");
+                }
+            
+                document.getElementById("pick-status").innerHTML = "Picks Submitted";
+                document.getElementById('yet-to-pick').style.display = 'none'; 
+                document.getElementById('already-picked').style.display = 'block'; 
+            }
+            else {
+                document.getElementById("pick-status").innerHTML = "Yet To Pick";
+                document.getElementById('yet-to-pick').style.display = 'block'; 
+                document.getElementById('already-picked').style.display = 'none'; 
+            }
+        }

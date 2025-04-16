@@ -1,0 +1,899 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <title>Three Pointer League</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Keywords used in the website -->
+    <meta name="keywords" content="Three Pointer League, Three Pointer, Nolan Sankey">
+    
+    <!-- Description for Website -->
+    <meta name="description" content="The official website for Three Pointer League">
+    
+    <!-- Bootstrap.css -->
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Inline CSS -->
+    <style>
+      :root {
+        --primary-color: #1e3a8a; /* Deep blue */
+        --secondary-color: #be123c; /* Sports red */
+        --accent-color: #facc15; /* Gold accent */
+        --light-bg: #f8fafc; /* Light background */
+        --dark-text: #1e293b; /* Dark text */
+        --light-text: #f8fafc; /* Light text */
+        --input-bg: #f1f5f9; /* Input background */
+        --form-shadow: rgba(0, 0, 0, 0.1);
+        --green-button: #15803d; /* Green for YES buttons */
+        --red-button: #b91c1c; /* Red for NO buttons */
+        --blue-button: #475569; /* Blue-gray for OPT OUT buttons */
+      }
+
+      html {
+        width: 100%;
+        height: 100%;
+        min-width: fit-content;
+      }
+
+      body {
+        width: 100%;
+        height: 100%;
+        font-size: 16px;
+        font-family: 'Montserrat', sans-serif;
+        color: var(--dark-text);
+        background-color: var(--light-bg);
+        position: relative;
+        line-height: 1.6;
+        padding-top: 120px; /* Account for fixed navbar */
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+
+      .navbar {
+        background-color: var(--primary-color);
+        color: var(--light-text);
+        padding: 10px 40px;
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 6px var(--form-shadow);
+      }
+
+      .navbar-nav {
+        justify-content: center;
+        align-items: center;
+      }
+
+      .header {
+        height: 80px;
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+      }
+
+      .navbar-fixed-top .navbar-collapse {
+        max-height: 600px;
+      }
+
+      .header-text > h1 {
+        font-size: 3.5rem;
+        color: var(--light-text);
+        margin: 0;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .header-text > p {
+        color: var(--light-text);
+        margin-top: 5px;
+      }
+
+      .navbar-collapse {
+        float: none;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .navbar-nav > li {
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .navbar-nav > li > a {
+        color: var(--light-text);
+        font-size: 16px;
+        font-weight: 600;
+        justify-content: center;
+        align-items: center;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: color 0.3s;
+        padding: 8px 15px;
+      }
+
+      .navbar-nav > li > a:hover {
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+
+      .mobile-nav-button {
+        color: var(--light-text);
+        display: none;
+        height: 20px;
+      }
+
+      .icon {
+        padding: 20px;
+      }
+
+      .welcome-section {
+        text-align: center;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+        color: var(--dark-text);
+      }
+
+      .welcome-section h2 {
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .welcome-section h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background-color: var(--accent-color);
+      }
+
+      .home_q_div {
+        background-color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin: 10px 0 20px 0;
+        box-shadow: 0 4px 6px var(--form-shadow);
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .home_q_div h5 {
+        color: var(--secondary-color);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+      }
+
+      .home_q_div h3 {
+        margin-bottom: 5px;
+        color: var(--dark-text);
+      }
+
+      .home_q_div h4 a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .home_q_div h4 a:hover {
+        color: var(--secondary-color);
+        text-decoration: underline;
+      }
+
+      .q_button {
+        float: center;
+        position: relative;
+        display: inline-block;
+        border-radius: 6px;
+        vertical-align: middle;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .already_picked_label {
+        margin: 10px 0;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      .button-input {
+        height: 0px;
+        width: 0px;
+        margin: 0 0;
+      }
+
+      .half_button {
+        width: 45%;
+        height: 45px;
+        margin: 0 0 10px 0;
+      }
+
+      .full_button {
+        width: 91.5%;
+        height: 45px;
+        margin: 0 0 10px 0;
+      }
+
+      .green_button {
+        background-color: var(--green-button);
+        color: white;
+      }
+
+      .green_button:hover {
+        background-color: #166534;
+      }
+
+      .red_button {
+        background-color: var(--red-button);
+        color: white;
+      }
+
+      .red_button:hover {
+        background-color: #991b1b;
+      }
+
+      .blue_button {
+        background-color: var(--blue-button);
+        color: white;
+      }
+
+      .blue_button:hover {
+        background-color: #334155;
+      }
+
+      .q_button label,
+      .q_button input {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        line-height: 45px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .q_button input[type="radio"] {
+        opacity: 0.011;
+        z-index: 100;
+      }
+
+      .big-submit {
+        width: 80%;
+        height: 60px;
+        font-size: 24px;
+        font-weight: 600;
+        border: 0px;
+        background-color: var(--secondary-color);
+        color: white;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.3s;
+        box-shadow: 0 4px 6px var(--form-shadow);
+        cursor: pointer;
+        margin: 10px 0 20px 0;
+      }
+
+      .big-submit:hover {
+        background-color: #9f1239;
+      }
+
+      .todays-picks-section {
+        text-align: center;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        padding: 0 5% 30px 5%;
+      }
+
+      .scores-section {
+        text-align: center;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 5% 60px 5%;
+        background-color: white;
+        margin: 20px auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px var(--form-shadow);
+        max-width: 800px;
+        width: 90%;
+      }
+
+      .scores-section h2 {
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .scores-section h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background-color: var(--accent-color);
+      }
+
+      .user-cell {
+        background-color: #fef3c7;
+      }
+
+      table {
+        margin: 0 auto;
+        color: var(--dark-text);
+        background: white;
+        border: 1px solid #cbd5e1;
+        font-size: 0.9rem;
+        border-collapse: collapse;
+        box-shadow: 0 4px 6px var(--form-shadow);
+        width: 100%;
+      }
+
+      table thead th,
+      table tfoot th {
+        background-color: var(--primary-color);
+        color: white;
+        height: 40px;
+        text-align: left;
+        padding: 10px 15px;
+        font-weight: 600;
+      }
+
+      table caption {
+        padding: .5em;
+      }
+
+      table th, table td {
+        padding: 10px 15px;
+        border: 1px solid #e2e8f0;
+      }
+
+      .wide_col {
+        min-width: 200px;
+        max-width: 200px;
+      }
+
+      .med_col {
+        width: 20%;
+      }
+
+      .green_border {
+        box-shadow: 0 -3px 0 #34d399 inset,
+                    0 3px 0 #34d399 inset,
+                   -3px 0 0 #34d399 inset,
+                   3px 0 0 #34d399 inset;
+      }
+
+      .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        min-width: 400px;
+        width: 100%;
+      }
+
+      .styled-table tbody tr:nth-child(even) {
+        background-color: #f8fafc;
+      }
+
+      .styled-table tbody tr:hover {
+        background-color: #f1f5f9;
+      }
+
+      #below_sub_msg {
+        color: var(--secondary-color);
+        font-weight: 600;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding-top: 140px;
+        }
+        
+        .header {
+          height: auto;
+          padding: 10px 0;
+        }
+        
+        .header-text > h1 {
+          font-size: 2.2rem;
+        }
+        
+        .header-text > h1::before,
+        .header-text > h1::after,
+        .header-text > h1 .sport_logo {
+          margin: 0 5px;
+          font-size: 1.5rem;
+        }
+          
+        .header-text > h1 .sport_logo_smaller {
+          margin: 0 5px;
+          font-size: 1.3rem;
+        }
+        
+        .navbar {
+          padding: 10px 20px;
+        }
+
+        .navbar-collapse {
+          display: flex;
+          flex-direction: column;
+          float: none;
+          width: 100%;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        .navbar-nav > li {
+          display: block;
+          width: 100%;
+          text-align: center;
+          padding: 5px 0;
+        }
+
+        .navbar-nav > li > a {
+          font-size: 16px;
+          text-align: center;
+          display: block;
+          padding: 8px 0;
+        }
+        
+        .mobile-nav-button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 15px;
+        }
+        
+        .scores-section {
+          width: 95%;
+          padding: 20px 10px;
+        }
+        
+        .home_q_div {
+          width: 90%;
+        }
+        
+        .half_button, .full_button {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+        
+        .big-submit {
+          width: 90%;
+        }
+        
+        #nav {
+          display: none;
+        }
+        
+        table {
+          font-size: 0.8rem;
+        }
+        
+        table th, table td {
+          padding: 8px;
+        }
+        
+        .wide_col {
+          min-width: auto;
+          max-width: none;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        body {
+          padding-top: 130px;
+          -webkit-text-size-adjust: 100%;
+        }
+        
+        .header-text > h1 {
+          font-size: 1.8rem;
+        }
+        
+        .big-submit {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          height: 50px;
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+    
+  <!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+  <body id="page-top" data-spy="scroll" data-target=".navbar fixed-top">
+    <nav class="navbar navbar-fixed-top" role="navigation">
+      <div class="header">
+        <div class="header-text">
+          <h1><span class="sport_logo">🏈</span><span class="sport_logo">🏀</span><strong> &nbsp; 3PL &nbsp; </strong><span class="sport_logo_smaller">⚾</span><span class="sport_logo">🏒</span></h1>
+        </div>
+        <h4 id="user-note"></h4>
+      </div>
+      <div class="mobile-nav-button">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <p><i class="fa fa-bars"></i></p>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul id="nav" class="nav navbar-nav">
+          <li><a href="3pl_home.html">Home</a>
+          <li><a><strong>Full Picks</strong></a></li>
+          <li><a href="3pl_stats.html">Statistics</a></li>
+          <li><a href="3pl_payouts.html">Payouts</a></li>
+          <li><a href="3pl_rules.html">Rules</a></li>
+          <li><a href="3pl_history.html">History</a></li>
+          <li><a href="javascript:void(0);" onclick="logout()">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Weeks Picks Section -->
+    <section id="weeks-picks" class="weeks-picks-section">
+      <h1 class="shrink-text-lg">This Week's Picks:</h1>
+      <div class="pick_table_div table_div_boarder">
+        <table id="this_week_table">
+          <thead>
+            <tr id="this_week_head_row">
+              <th scope="col" class="wide_col bottom_divider dark_background">Day of Week</th>
+              <th scope="col" class="wide_col bottom_divider dark_background">Lock Date + Time</th>
+              <th scope="col" class="extra_wide_col bottom_divider dark_background">Question</th>
+              <th scope="col" class="wide_col right_divider bottom_divider dark_background">Correct Answer</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+      
+    <section id="last-picks" class="last-picks-section">
+      <h1 class="shrink-text-lg">Last Week's Picks:</h1>
+      <div class="pick_table_div table_div_boarder">
+        <table id="last_week_table">
+          <thead>
+            <tr id="last_week_head_row">
+              <th scope="col" class="wide_col">Day of Week</th>
+              <th scope="col" class="wide_col">Lock Date + Time</th>
+              <th scope="col" class="extra_wide_col">Question</th>
+              <th scope="col" class="wide_col">Correct Answer</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+    
+    <script>
+        var is_logged_in = localStorage.getItem("logged-in");
+        var curr_user = localStorage.getItem("user");
+        document.getElementById("user-note").innerHTML = curr_user;
+        if(!is_logged_in){
+            window.location.replace("index.html");
+        }
+        function logout(){
+            localStorage.clear();
+            window.location.replace("index.html");
+        }
+    </script>
+
+    <script>
+        const thisWeekSheetLink = "https://sheets.googleapis.com/v4/spreadsheets/1TF3Cdoi614IKqOoedxqqC4e6HATXZ4WRkZO0342Hnyk/values/This Week's Picks/?key=AIzaSyBDAMBO6YH4isbUYYgjK1NF9LwGiur6z-Y";
+        this_week_data_fetch();
+
+        async function this_week_data_fetch(){
+            let this_picks_data = await fetch(thisWeekSheetLink)    
+              .then((response) => response.json());
+            var num_players = 32;
+            var head_row = document.getElementById("this_week_head_row");
+            var table = document.getElementById("this_week_table");
+            var curr_user = localStorage.getItem("user");
+            for (let i = 0; i < num_players; i++) {
+                var player = this_picks_data.values[3][5+i*3];
+                var col_add = i+4;
+                if (player==curr_user){
+                    var col_add = 4
+                }
+                var cell = head_row.insertCell(col_add);
+                cell.innerHTML = player;
+                cell.classList.add("std_col");
+                cell.classList.add("bottom_divider");
+                cell.classList.add("right_divider_soft");
+                cell.classList.add("dark_background");
+            }
+            for (let day = 0; day < 7; day++){
+                var row1 = table.insertRow(day*3+1); 
+                var row2 = table.insertRow(day*3+2); 
+                var row3 = table.insertRow(day*3+3); 
+                cell1 = row1.insertCell(0);
+                cell1.innerHTML = this_picks_data.values[5+day*3][1];
+                cell1.rowSpan = "3";
+                cell1.classList.add("bottom_divider");
+                cell2a = row1.insertCell(1);
+                cell2a.innerHTML = this_picks_data.values[5+day*3][2];
+                cell2b = row2.insertCell(0);
+                cell2b.innerHTML = this_picks_data.values[6+day*3][2];
+                cell2c = row3.insertCell(0);
+                cell2c.innerHTML = this_picks_data.values[7+day*3][2];
+                cell2c.classList.add("bottom_divider");
+                cell3a = row1.insertCell(2);
+                cell3a.innerHTML = this_picks_data.values[5+day*3][3];
+                cell3b = row2.insertCell(1);
+                cell3b.innerHTML = this_picks_data.values[6+day*3][3];
+                cell3c = row3.insertCell(1);
+                cell3c.innerHTML = this_picks_data.values[7+day*3][3];
+                cell3c.classList.add("bottom_divider");
+                cell4a = row1.insertCell(3);
+                cell4a.innerHTML = this_picks_data.values[5+day*3][4];
+                cell4a.classList.add("right_divider");
+                cell4b = row2.insertCell(2);
+                cell4b.innerHTML = this_picks_data.values[6+day*3][4];
+                cell4b.classList.add("right_divider");
+                cell4c = row3.insertCell(2);
+                cell4c.innerHTML = this_picks_data.values[7+day*3][4];
+                cell4c.classList.add("right_divider");
+                cell4c.classList.add("bottom_divider");
+                for (let j = 0; j < num_players; j++){
+                    var player = this_picks_data.values[3][5+j*3];
+                    var col_add = j+4;
+                    if (player==curr_user){
+                        var col_add = 4
+                    }
+                    cell_p1a = row1.insertCell(col_add);
+                    cell_p1a.innerHTML = this_picks_data.values[5+day*3][5+j*3];
+                    cell_p1a.classList.add("right_divider_soft");
+                    cell_p1b = row2.insertCell(col_add-1);
+                    cell_p1b.innerHTML = this_picks_data.values[6+day*3][5+j*3];
+                    cell_p1b.classList.add("right_divider_soft");
+                    cell_p1c = row3.insertCell(col_add-1);
+                    cell_p1c.innerHTML = this_picks_data.values[7+day*3][5+j*3];
+                    cell_p1c.classList.add("bottom_divider");
+                    cell_p1c.classList.add("right_divider_soft");
+                    //cell_p2a = row1.insertCell(5+j*3);
+                    cell_p2a_text = this_picks_data.values[5+day*3][6+j*3];
+                    //cell_p2a.innerHTML = cell_p2a_text;
+                    //cell_p2b = row2.insertCell(4+j*2);
+                    cell_p2b_text = this_picks_data.values[6+day*3][6+j*3];
+                    //cell_p2b.innerHTML = cell_p2b_text;
+                    //cell_p2c = row3.insertCell(4+j*2);
+                    cell_p2c_text = this_picks_data.values[7+day*3][6+j*3];
+                    //cell_p2c.innerHTML = cell_p2c_text;
+                    //cell_p3 = row1.insertCell(6+j*3);
+                    cell_p3_text = this_picks_data.values[5+day*3][7+j*3];
+                    //cell_p3.innerHTML = cell_p3_text;
+                    //cell_p3.rowSpan = "3";
+                    if (cell_p2a_text=="!"){
+                        cell_p1a.classList.add("green_cell");
+                    }
+                    else if (cell_p2a_text=="x"){
+                        cell_p1a.classList.add("red_cell");
+                    }
+                    if (cell_p2b_text=="!"){
+                        cell_p1b.classList.add("green_cell");
+                    }
+                    else if (cell_p2b_text=="x"){
+                        cell_p1b.classList.add("red_cell");
+                    }
+                    if (cell_p2c_text=="!"){
+                        cell_p1c.classList.add("green_cell");
+                    }
+                    else if (cell_p2c_text=="x"){
+                        cell_p1c.classList.add("red_cell");
+                    }
+                    if (cell_p3_text=="!"){
+                        cell_p1a.classList.add("bold_cell");
+                        cell_p1b.classList.add("bold_cell");
+                        cell_p1c.classList.add("bold_cell");
+                        cell_p1a.classList.add("three_top");
+                        cell_p1b.classList.add("three_middle");
+                        cell_p1c.classList.add("three_bottom");
+                    }
+                    if (player==curr_user){
+                        cell_p1a.classList.add("user-cell");
+                        cell_p1b.classList.add("user-cell");
+                        cell_p1c.classList.add("user-cell");
+                    }
+                }
+            }
+            var score_row = table.insertRow(22);
+            cell_s = score_row.insertCell(0);
+            cell_s.innerHTML = "Scores";
+            cell_s.classList.add("bottom_divider");
+            cell_s.classList.add("right_divider_soft");
+            cell_s.classList.add("dark_background");
+            cell_s.colSpan = "4";
+            for (let j = 0; j < num_players; j++){
+                var player = this_picks_data.values[3][5+j*3];
+                var col_add = j+1;
+                if (player==curr_user){
+                    var col_add = 1
+                }
+                cell_p = score_row.insertCell(col_add);
+                cell_p.innerHTML = this_picks_data.values[27][5+j*3];
+                cell_p_lead = this_picks_data.values[28][5+j*3];
+                cell_p.classList.add("right_divider");
+                if (cell_p_lead=="!"){
+                    cell_p.classList.add("green_background");
+                    cell_p.classList.add("green_border");
+                }
+                if (player==curr_user){
+                    cell_p.classList.add("user-cell");
+                }
+            }
+        }   
+
+    </script>
+
+    <script>
+        const lastWeekSheetLink = "https://sheets.googleapis.com/v4/spreadsheets/1TF3Cdoi614IKqOoedxqqC4e6HATXZ4WRkZO0342Hnyk/values/Past Week's Picks/?key=AIzaSyBDAMBO6YH4isbUYYgjK1NF9LwGiur6z-Y";
+        last_week_data_fetch();
+
+        async function last_week_data_fetch(){
+            let last_picks_data = await fetch(lastWeekSheetLink)    
+              .then((response) => response.json());
+            var num_players = 32;
+            var head_row = document.getElementById("last_week_head_row");
+            var table = document.getElementById("last_week_table");
+            for (let i = 0; i < num_players; i++) {
+                var cell = head_row.insertCell(4+i);
+                cell.innerHTML = last_picks_data.values[3][5+i*3];
+                cell.classList.add("std_col");
+                cell.classList.add("bottom_divider");
+                cell.classList.add("right_divider_soft");
+                cell.classList.add("dark_background");
+            }
+            for (let day = 0; day < 7; day++){
+                var row1 = table.insertRow(day*3+1); 
+                var row2 = table.insertRow(day*3+2); 
+                var row3 = table.insertRow(day*3+3); 
+                cell1 = row1.insertCell(0);
+                cell1.innerHTML = last_picks_data.values[5+day*3][1];
+                cell1.rowSpan = "3";
+                cell1.classList.add("bottom_divider");
+                cell2a = row1.insertCell(1);
+                cell2a.innerHTML = last_picks_data.values[5+day*3][2];
+                cell2b = row2.insertCell(0);
+                cell2b.innerHTML = last_picks_data.values[6+day*3][2];
+                cell2c = row3.insertCell(0);
+                cell2c.innerHTML = last_picks_data.values[7+day*3][2];
+                cell2c.classList.add("bottom_divider");
+                cell3a = row1.insertCell(2);
+                cell3a.innerHTML = last_picks_data.values[5+day*3][3];
+                cell3b = row2.insertCell(1);
+                cell3b.innerHTML = last_picks_data.values[6+day*3][3];
+                cell3c = row3.insertCell(1);
+                cell3c.innerHTML = last_picks_data.values[7+day*3][3];
+                cell3c.classList.add("bottom_divider");
+                cell4a = row1.insertCell(3);
+                cell4a.innerHTML = last_picks_data.values[5+day*3][4];
+                cell4a.classList.add("right_divider");
+                cell4b = row2.insertCell(2);
+                cell4b.innerHTML = last_picks_data.values[6+day*3][4];
+                cell4b.classList.add("right_divider");
+                cell4c = row3.insertCell(2);
+                cell4c.innerHTML = last_picks_data.values[7+day*3][4];
+                cell4c.classList.add("right_divider");
+                cell4c.classList.add("bottom_divider");
+                for (let j = 0; j < num_players; j++){
+                    cell_p1a = row1.insertCell(4+j);
+                    cell_p1a.innerHTML = last_picks_data.values[5+day*3][5+j*3];
+                    cell_p1a.classList.add("right_divider_soft");
+                    cell_p1b = row2.insertCell(3+j);
+                    cell_p1b.innerHTML = last_picks_data.values[6+day*3][5+j*3];
+                    cell_p1b.classList.add("right_divider_soft");
+                    cell_p1c = row3.insertCell(3+j);
+                    cell_p1c.innerHTML = last_picks_data.values[7+day*3][5+j*3];
+                    cell_p1c.classList.add("bottom_divider");
+                    cell_p1c.classList.add("right_divider_soft");
+                    //cell_p2a = row1.insertCell(5+j*3);
+                    cell_p2a_text = last_picks_data.values[5+day*3][6+j*3];
+                    //cell_p2a.innerHTML = cell_p2a_text;
+                    //cell_p2b = row2.insertCell(4+j*2);
+                    cell_p2b_text = last_picks_data.values[6+day*3][6+j*3];
+                    //cell_p2b.innerHTML = cell_p2b_text;
+                    //cell_p2c = row3.insertCell(4+j*2);
+                    cell_p2c_text = last_picks_data.values[7+day*3][6+j*3];
+                    //cell_p2c.innerHTML = cell_p2c_text;
+                    //cell_p3 = row1.insertCell(6+j*3);
+                    cell_p3_text = last_picks_data.values[5+day*3][7+j*3];
+                    //cell_p3.innerHTML = cell_p3_text;
+                    //cell_p3.rowSpan = "3";
+                    if (cell_p2a_text=="!"){
+                        cell_p1a.classList.add("green_cell");
+                    }
+                    else if (cell_p2a_text=="x"){
+                        cell_p1a.classList.add("red_cell");
+                    }
+                    if (cell_p2b_text=="!"){
+                        cell_p1b.classList.add("green_cell");
+                    }
+                    else if (cell_p2b_text=="x"){
+                        cell_p1b.classList.add("red_cell");
+                    }
+                    if (cell_p2c_text=="!"){
+                        cell_p1c.classList.add("green_cell");
+                    }
+                    else if (cell_p2c_text=="x"){
+                        cell_p1c.classList.add("red_cell");
+                    }
+                    if (cell_p3_text=="!"){
+                        cell_p1a.classList.add("bold_cell");
+                        cell_p1b.classList.add("bold_cell");
+                        cell_p1c.classList.add("bold_cell");
+                        cell_p1a.classList.add("three_top");
+                        cell_p1b.classList.add("three_middle");
+                        cell_p1c.classList.add("three_bottom");
+                    }
+                }
+            }
+            var score_row = table.insertRow(22);
+            cell_s = score_row.insertCell(0);
+            cell_s.innerHTML = "Scores";
+            cell_s.classList.add("bottom_divider");
+            cell_s.classList.add("right_divider_soft");
+            cell_s.classList.add("dark_background");
+            cell_s.colSpan = "4";
+            for (let j = 0; j < num_players; j++){
+                cell_p = score_row.insertCell(1+j);
+                cell_p.innerHTML = last_picks_data.values[27][5+j*3];
+                cell_p_lead = last_picks_data.values[28][5+j*3];
+                cell_p.classList.add("right_divider");
+                if (cell_p_lead=="!"){
+                    cell_p.classList.add("green_background");
+                    cell_p.classList.add("green_cell");
+                    cell_p.classList.add("bold_cell");
+                }
+            }
+
+        }   
+
+    </script>
+
+    <script>
+        if (window.innerWidth < 766) {
+            document.getElementById("nav").style.display = "none";
+        }
+        function myFunction() {
+            var x = document.getElementById("nav");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+
+    <script>
+        var past_week_1 = true;
+        if(!past_week_1) {
+            document.getElementById('last-picks').style.display = 'none';
+        }
+    </script>
