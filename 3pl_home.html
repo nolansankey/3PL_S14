@@ -259,24 +259,30 @@
       }
 
       .blue_button:hover {
-        background-color: #334155;
+        background-color: #475569;
       }
 
       .q_button label,
       .q_button input {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
         height: 100%;
         text-align: center;
-        line-height: 45px;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 1px;
       }
 
       .q_button input[type="radio"] {
-        opacity: 0.011;
-        z-index: 100;
+        display: none;
+      }
+      
+      .q_button label {
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
       }
 
       .big-submit {
@@ -684,115 +690,377 @@
         <tbody></tbody>
       </table>
     </section>
+  </body>
+</html>
     
-    <script>
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
-        today = mm + '/' + dd + '/' + yyyy;
-    </script>
+<script>
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+  today = mm + '/' + dd + '/' + yyyy;
+</script>
 
-    <script>
-        var is_logged_in = localStorage.getItem("logged-in");
-        var curr_user = localStorage.getItem("user");
-        document.getElementById("user-note").innerHTML = curr_user;
-        if(!is_logged_in){
-            window.location.replace("index.html");
-        }
-        function logout(){
-            localStorage.clear();
-            window.location.replace("index.html");
-        }
-        function link_error(){
-            var error_msg = confirm("Link error. Sorry :(");
-        }
-        
-        function myFunction() {
-          var x = document.getElementById("nav");
-          if (x.style.display === "block") {
-            x.style.display = "none";
-          } else {
-            x.style.display = "block";
+<script>
+  var is_logged_in = localStorage.getItem("logged-in");
+  var curr_user = localStorage.getItem("user");
+  document.getElementById("user-note").innerHTML = curr_user;
+  if(!is_logged_in){
+      window.location.replace("index.html");
+  }
+  function logout(){
+      localStorage.clear();
+      window.location.replace("index.html");
+  }
+  function link_error(){
+      var error_msg = confirm("Link error. Sorry :(");
+  }
+
+  function myFunction() {
+    var x = document.getElementById("nav");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
+
+<script>
+  const responsesSheetLink = "https://sheets.googleapis.com/v4/spreadsheets/1TF3Cdoi614IKqOoedxqqC4e6HATXZ4WRkZO0342Hnyk/values/Responses/?key=AIzaSyBDAMBO6YH4isbUYYgjK1NF9LwGiur6z-Y";
+  responses_data_fetch();
+
+  async function responses_data_fetch(){
+      let responses_data = await fetch(responsesSheetLink)    
+        .then((response) => response.json());
+      var curr_user = localStorage.getItem("user");
+      var has_picked = false;
+      for (let i = 1; i < responses_data.values.length; i++) {
+          player = responses_data.values[i][1]
+          if (player==curr_user){
+              has_picked = true;
+              q1_pick = responses_data.values[i][2];
+              q2_pick = responses_data.values[i][3];
+              q3_pick = responses_data.values[i][4];
           }
-        }
-    </script>
+      }
+      if (has_picked){
+         if(q1_pick == "yes"){
+             document.getElementById("q_1_picked_label").innerHTML = "YES";
+             document.getElementById("q_1_picked_button").setAttribute("class","q_button full_button green_button");
+         }
+         if(q1_pick == "no"){
+              document.getElementById("q_1_picked_label").innerHTML = "NO";
+             document.getElementById("q_1_picked_button").setAttribute("class","q_button full_button red_button");
+         }
+         if(q1_pick == "opt out"){
+              document.getElementById("q_1_picked_label").innerHTML = "OPT OUT";
+             document.getElementById("q_1_picked_button").setAttribute("class","q_button full_button blue_button");
+          }
+          if(q1_pick == "late"){
+              document.getElementById("q_1_picked_label").innerHTML = "LATE";
+             document.getElementById("q_1_picked_button").setAttribute("class","q_button full_button blue_button");
+          }
+          if(q2_pick == "yes"){
+             document.getElementById("q_2_picked_label").innerHTML = "YES";
+             document.getElementById("q_2_picked_button").setAttribute("class","q_button full_button green_button");
+         }
+         if(q2_pick == "no"){
+              document.getElementById("q_2_picked_label").innerHTML = "NO";
+             document.getElementById("q_2_picked_button").setAttribute("class","q_button full_button red_button");
+         }
+         if(q2_pick == "opt out"){
+              document.getElementById("q_2_picked_label").innerHTML = "OPT OUT";
+             document.getElementById("q_2_picked_button").setAttribute("class","q_button full_button blue_button");
+          }
+          if(q2_pick == "late"){
+              document.getElementById("q_2_picked_label").innerHTML = "LATE";
+             document.getElementById("q_2_picked_button").setAttribute("class","q_button full_button blue_button");
+          }
+          if(q3_pick == "yes"){
+             document.getElementById("q_3_picked_label").innerHTML = "YES";
+             document.getElementById("q_3_picked_button").setAttribute("class","q_button full_button green_button");
+         }
+         if(q3_pick == "no"){
+              document.getElementById("q_3_picked_label").innerHTML = "NO";
+             document.getElementById("q_3_picked_button").setAttribute("class","q_button full_button red_button");
+         }
+         if(q3_pick == "opt out"){
+              document.getElementById("q_3_picked_label").innerHTML = "OPT OUT";
+             document.getElementById("q_3_picked_button").setAttribute("class","q_button full_button blue_button");
+          }
+          if(q3_pick == "late"){
+              document.getElementById("q_3_picked_label").innerHTML = "LATE";
+             document.getElementById("q_3_picked_button").setAttribute("class","q_button full_button blue_button");
+          }
 
-    <script>
-        const responsesSheetLink = "https://sheets.googleapis.com/v4/spreadsheets/1TF3Cdoi614IKqOoedxqqC4e6HATXZ4WRkZO0342Hnyk/values/Responses/?key=AIzaSyBDAMBO6YH4isbUYYgjK1NF9LwGiur6z-Y";
-        responses_data_fetch();
-        
-        async function responses_data_fetch(){
-            let responses_data = await fetch(responsesSheetLink)    
-              .then((response) => response.json());
-            var curr_user = localStorage.getItem("user");
-            var has_picked = false;
-            for (let i = 1; i < responses_data.values.length; i++) {
-                player = responses_data.values[i][1]
-                if (player==curr_user){
-                    has_picked = true;
-                    q1_pick = responses_data.values[i][2];
-                    q2_pick = responses_data.values[i][3];
-                    q3_pick = responses_data.values[i][4];
-                }
+          document.getElementById("pick-status").innerHTML = "Picks Submitted";
+          document.getElementById('yet-to-pick').style.display = 'none'; 
+          document.getElementById('already-picked').style.display = 'block'; 
+      }
+      else {
+          document.getElementById("pick-status").innerHTML = "Yet To Pick";
+          document.getElementById('yet-to-pick').style.display = 'block'; 
+          document.getElementById('already-picked').style.display = 'none'; 
+      }
+  }
+</script>
+
+<script>
+    window.addEventListener("load", function() {
+        var p_form = document.getElementById('picks-form');
+        p_form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const data = new FormData(p_form);
+            var currentdate = new Date(); 
+            var timestamp = Math.floor(new Date().getTime() / 1000);
+            data.append("Name", curr_user);
+            data.append("Timestamp", timestamp);
+            q1_input = data.get("Q1");
+            q2_input = data.get("Q2");
+            q3_input = data.get("Q3");
+            if((q1_input=="opt out"&&q2_input=="opt out")||(q1_input=="opt out"&&q3_input=="opt out")||(q2_input=="opt out"&&q3_input=="opt out")){
+                document.getElementById("below_sub_msg").innerHTML = "Only 1 opt out allowed";
             }
-            if (has_picked){
-               if(q1_pick == "yes"){
-                   document.getElementById("q_1_picked_label").innerHTML = "YES";
-                   document.getElementById("q_1_picked_button").setAttribute("class","q_button full_button green_button");
-               }
-               if(q1_pick == "no"){
-                    document.getElementById("q_1_picked_label").innerHTML = "NO";
-                   document.getElementById("q_1_picked_button").setAttribute("class","q_button full_button red_button");
-               }
-               if(q1_pick == "opt out"){
-                    document.getElementById("q_1_picked_label").innerHTML = "OPT OUT";
-                   document.getElementById("q_1_picked_button").setAttribute("class","q_button full_button blue_button");
-                }
-                if(q1_pick == "late"){
-                    document.getElementById("q_1_picked_label").innerHTML = "LATE";
-                   document.getElementById("q_1_picked_button").setAttribute("class","q_button full_button blue_button");
-                }
-                if(q2_pick == "yes"){
-                   document.getElementById("q_2_picked_label").innerHTML = "YES";
-                   document.getElementById("q_2_picked_button").setAttribute("class","q_button full_button green_button");
-               }
-               if(q2_pick == "no"){
-                    document.getElementById("q_2_picked_label").innerHTML = "NO";
-                   document.getElementById("q_2_picked_button").setAttribute("class","q_button full_button red_button");
-               }
-               if(q2_pick == "opt out"){
-                    document.getElementById("q_2_picked_label").innerHTML = "OPT OUT";
-                   document.getElementById("q_2_picked_button").setAttribute("class","q_button full_button blue_button");
-                }
-                if(q2_pick == "late"){
-                    document.getElementById("q_2_picked_label").innerHTML = "LATE";
-                   document.getElementById("q_2_picked_button").setAttribute("class","q_button full_button blue_button");
-                }
-                if(q3_pick == "yes"){
-                   document.getElementById("q_3_picked_label").innerHTML = "YES";
-                   document.getElementById("q_3_picked_button").setAttribute("class","q_button full_button green_button");
-               }
-               if(q3_pick == "no"){
-                    document.getElementById("q_3_picked_label").innerHTML = "NO";
-                   document.getElementById("q_3_picked_button").setAttribute("class","q_button full_button red_button");
-               }
-               if(q3_pick == "opt out"){
-                    document.getElementById("q_3_picked_label").innerHTML = "OPT OUT";
-                   document.getElementById("q_3_picked_button").setAttribute("class","q_button full_button blue_button");
-                }
-                if(q3_pick == "late"){
-                    document.getElementById("q_3_picked_label").innerHTML = "LATE";
-                   document.getElementById("q_3_picked_button").setAttribute("class","q_button full_button blue_button");
-                }
-            
-                document.getElementById("pick-status").innerHTML = "Picks Submitted";
-                document.getElementById('yet-to-pick').style.display = 'none'; 
-                document.getElementById('already-picked').style.display = 'block'; 
+            else{
+                document.getElementById("pick-submit").disabled=true;
+                document.getElementById("pick-submit").style.backgroundColor = "#9ca3af"; // Gray color
+                document.getElementById("pick-submit").style.cursor = "not-allowed";
+                document.getElementById("pick-submit").setAttribute("value","Submitting...");
+                const action = e.target.action;
+                fetch(action, {
+                    method: 'POST',
+                    body: data,
+                })
+                .then(() => {
+                    var r = confirm("Picks Submitted Successfully! Press OK to reload page");
+                    if (r == true){
+                        localStorage.setItem("picked "+today, true);
+                        localStorage.setItem("Q1 "+today, q1_input);
+                        localStorage.setItem("Q2 "+today, q2_input);
+                        localStorage.setItem("Q3 "+today, q3_input);
+                        window.location.reload();
+                    }
+                })
             }
-            else {
-                document.getElementById("pick-status").innerHTML = "Yet To Pick";
-                document.getElementById('yet-to-pick').style.display = 'block'; 
-                document.getElementById('already-picked').style.display = 'none'; 
-            }
+        });                     
+    });
+</script>
+
+<script>
+    window.addEventListener("load", function() {
+        var clear_form = document.getElementById('clear-form');
+        clear_form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            document.getElementById("clear-pick-submit").disabled=true;
+            document.getElementById("clear-pick-submit").style.backgroundColor = "#9ca3af"; // Gray color
+            document.getElementById("clear-pick-submit").style.cursor = "not-allowed";
+            document.getElementById("clear-pick-submit").setAttribute("value","Clearing...");
+            document.getElementById("below_sub_msg").innerHTML = "(please wait)";
+            const data = new FormData(clear_form);
+            data.append("Name", curr_user);
+            data.append("Clear", true);
+            const action = e.target.action;
+            fetch(action, {
+                method: 'POST',
+                body: data,
+            })
+            .then(() => {
+                var r = confirm("Picks Cleared! Press OK to reload page and resubmit");
+                if (r == true){
+                    localStorage.setItem("picked "+today, false);
+                    localStorage.setItem("Q1 "+today, null);
+                    localStorage.setItem("Q2 "+today, null);
+                    localStorage.setItem("Q3 "+today, null);
+                    window.location.reload();
+                }
+            })
+        });
+    });
+</script>
+
+<script>
+
+    function adj_buttons(q_num, pick_yno){
+        if (pick_yno=="yes"){
+            document.getElementById("q"+q_num+"_button_yes").removeAttribute("style");
+            document.getElementById("q"+q_num+"_button_no").setAttribute("style","background-color: #EEE");
+            document.getElementById("q"+q_num+"_button_opt_out").setAttribute("style","background-color: #EEE"); 
         }
+        if (pick_yno=="no"){
+            document.getElementById("q"+q_num+"_button_yes").setAttribute("style","background-color: #EEE");
+            document.getElementById("q"+q_num+"_button_no").removeAttribute("style");
+            document.getElementById("q"+q_num+"_button_opt_out").setAttribute("style","background-color: #EEE"); 
+        }
+        if (pick_yno=="opt out"){
+            document.getElementById("q"+q_num+"_button_yes").setAttribute("style","background-color: #EEE");
+            document.getElementById("q"+q_num+"_button_no").setAttribute("style","background-color: #EEE");
+            document.getElementById("q"+q_num+"_button_opt_out").removeAttribute("style");
+        }
+    }
+    
+</script>
+
+<script>
+    const questionsSheetLink = "https://sheets.googleapis.com/v4/spreadsheets/1TF3Cdoi614IKqOoedxqqC4e6HATXZ4WRkZO0342Hnyk/values/Upcoming Questions/?key=AIzaSyBDAMBO6YH4isbUYYgjK1NF9LwGiur6z-Y";
+    let q1_fetch = "Question Error 2";
+    let q2_fetch = "Question Error 2";
+    let q3_fetch = "Question Error 2";
+    var right_now = Date.now();
+    let east_datetime_str = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
+    let date_east = new Date(east_datetime_str);
+    questions_data_fetch();
+    
+    async function questions_data_fetch(){
+        let sheet_data = await fetch(questionsSheetLink)    
+          .then((response) => response.json());
+        q1_fetch = sheet_data.values[29][3];
+        q2_fetch = sheet_data.values[30][3];
+        q3_fetch = sheet_data.values[31][3];
+        document.getElementById("q1_text").innerHTML = q1_fetch;
+        document.getElementById("q2_text").innerHTML = q2_fetch;
+        document.getElementById("q3_text").innerHTML = q3_fetch;
+        document.getElementById("q1_ap_text").innerHTML = q1_fetch;
+        document.getElementById("q2_ap_text").innerHTML = q2_fetch;
+        document.getElementById("q3_ap_text").innerHTML = q3_fetch;
+        
+        q1_link_fetch = sheet_data.values[29][4];
+        q2_link_fetch = sheet_data.values[30][4];
+        q3_link_fetch = sheet_data.values[31][4];
+        document.getElementById("q1_link_1").setAttribute("href",q1_link_fetch);
+        document.getElementById("q1_link_1").setAttribute("target","_blank");
+        document.getElementById("q1_link_1").removeAttribute("onclick");
+        document.getElementById("q2_link_1").setAttribute("href",q2_link_fetch);
+        document.getElementById("q2_link_1").setAttribute("target","_blank");
+        document.getElementById("q2_link_1").removeAttribute("onclick");
+        document.getElementById("q3_link_1").setAttribute("href",q3_link_fetch);
+        document.getElementById("q3_link_1").setAttribute("target","_blank");
+        document.getElementById("q3_link_1").removeAttribute("onclick");
+        document.getElementById("q1_link_2").setAttribute("href",q1_link_fetch);
+        document.getElementById("q1_link_2").setAttribute("target","_blank");
+        document.getElementById("q1_link_2").removeAttribute("onclick");
+        document.getElementById("q2_link_2").setAttribute("href",q2_link_fetch);
+        document.getElementById("q2_link_2").setAttribute("target","_blank");
+        document.getElementById("q2_link_2").removeAttribute("onclick");
+        document.getElementById("q3_link_2").setAttribute("href",q3_link_fetch);
+        document.getElementById("q3_link_2").setAttribute("target","_blank");
+        document.getElementById("q3_link_2").removeAttribute("onclick");
+        
+        q1_time_fetch = sheet_data.values[29][2];
+        q1_time_fetch_num = Date.parse(q1_time_fetch);
+        if(date_east >= q1_time_fetch_num){
+            document.getElementById("q1_button_yes").style.display = 'none';
+            document.getElementById("q1_yes_label").style.display = 'none';
+            document.getElementById("q1_button_no").style.display = 'none';
+            document.getElementById("q1_no_label").style.display = 'none';
+            document.getElementById("q1_opt-out").setAttribute("value","late");
+            document.getElementById("q1_opt-out").setAttribute("checked","chedked");
+            document.getElementById("q1_opt-out_txt").innerHTML = "LATE ("+q1_time_fetch+" Eastern)";
+        }
+        q2_time_fetch = sheet_data.values[30][2];
+        q2_time_fetch_num = Date.parse(q2_time_fetch);
+        if(date_east >= q2_time_fetch_num){
+            document.getElementById("q2_button_yes").style.display = 'none';
+            document.getElementById("q2_yes_label").style.display = 'none';
+            document.getElementById("q2_button_no").style.display = 'none';
+            document.getElementById("q2_no_label").style.display = 'none';
+            document.getElementById("q2_opt-out").setAttribute("value","late");
+            document.getElementById("q2_opt-out").setAttribute("checked","chedked");
+            document.getElementById("q2_opt-out_txt").innerHTML = "LATE ("+q2_time_fetch+" Eastern)";
+        }
+        q3_time_fetch = sheet_data.values[31][2];
+        q3_time_fetch_num = Date.parse(q3_time_fetch);
+        if(date_east >= q3_time_fetch_num){
+            document.getElementById("q3_button_yes").style.display = 'none';
+            document.getElementById("q3_yes_label").style.display = 'none';
+            document.getElementById("q3_button_no").style.display = 'none';
+            document.getElementById("q3_no_label").style.display = 'none';
+            document.getElementById("q3_opt-out").setAttribute("value","late");
+            document.getElementById("q3_opt-out").setAttribute("checked","chedked");
+            document.getElementById("q3_opt-out_txt").innerHTML = "LATE ("+q3_time_fetch+" Eastern)";
+        }
+    }
+
+</script>
+
+<script>
+    const scoresSheetLink = "https://sheets.googleapis.com/v4/spreadsheets/1TF3Cdoi614IKqOoedxqqC4e6HATXZ4WRkZO0342Hnyk/values/Scores/?key=AIzaSyBDAMBO6YH4isbUYYgjK1NF9LwGiur6z-Y";
+    let score_item = "Scores Error 2";
+    scores_data_fetch();
+    
+    async function scores_data_fetch(){
+        let scores_data = await fetch(scoresSheetLink)    
+          .then((response) => response.json());
+        var num_payers = 32;
+        var table = document.getElementById("scores_table");
+        var curr_user = localStorage.getItem("user");
+        for (let i = 0; i < num_payers; i++) {
+            var player = scores_data.values[4+i][8];
+            var row_add = i+1;
+            if (player==curr_user){
+                var row_add = i+1;
+            }
+            var row = table.insertRow(row_add);
+            var cell1 = row.insertCell(0);
+            cell1.innerHTML = player;
+            var cell2 = row.insertCell(1);
+            cell2.innerHTML = scores_data.values[4+i][9];
+            var cell3 = row.insertCell(2);
+            cell3.innerHTML = scores_data.values[4+i][15];
+            var cell4 = row.insertCell(3);
+            cell4.innerHTML = scores_data.values[4+i][16];
+            if (player==curr_user){
+                cell1.classList.add("user-cell");
+                cell2.classList.add("user-cell");
+                cell3.classList.add("user-cell");
+                cell4.classList.add("user-cell");
+            }
+            if (scores_data.values[4+i][12]=="+6"){
+                cell2.classList.add("green_border");
+            }  
+        }
+    }
+    
+    const scoresReqLink = "https://sheets.googleapis.com/v4/spreadsheets/1TF3Cdoi614IKqOoedxqqC4e6HATXZ4WRkZO0342Hnyk/values/Pools/?key=AIzaSyBDAMBO6YH4isbUYYgjK1NF9LwGiur6z-Y";
+    
+</script>
+
+<script>
+    const thisWeekSheetLink = "https://sheets.googleapis.com/v4/spreadsheets/1TF3Cdoi614IKqOoedxqqC4e6HATXZ4WRkZO0342Hnyk/values/This Week's Picks/?key=AIzaSyBDAMBO6YH4isbUYYgjK1NF9LwGiur6z-Y";
+    this_week_data_fetch();
+    
+    async function this_week_data_fetch(){
+        
+        let this_picks_data = await fetch(thisWeekSheetLink)    
+          .then((response) => response.json());
+        var num_players = 32;
+        var curr_user = localStorage.getItem("user");
+        for (let i = 0; i < num_players; i++) {
+            var player = this_picks_data.values[3][5+i*3];
+            if (player==curr_user){
+                if (this_picks_data.values[2][5+i*3]>0){
+                    document.getElementById('q1_opt-out').style.display = 'none';
+                    document.getElementById('q2_opt-out').style.display = 'none';
+                    document.getElementById('q3_opt-out').style.display = 'none';
+                    document.getElementById('q1_opt-out_txt').style.display = 'none';
+                    document.getElementById('q2_opt-out_txt').style.display = 'none';
+                    document.getElementById('q3_opt-out_txt').style.display = 'none';
+                }
+            }    
+        }
+    }   
+</script>
+
+<script>
+    if (window.innerWidth < 766) {
+        document.getElementById("nav").style.display = "none";
+    }
+    function myFunction() {
+        var x = document.getElementById("nav");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
