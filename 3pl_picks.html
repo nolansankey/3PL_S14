@@ -138,7 +138,6 @@
       .weeks-picks-section,
       .last-picks-section {
         text-align: center;
-        display: flex;
         flex-flow: column nowrap;
         justify-content: center;
         align-items: center;
@@ -170,7 +169,7 @@
       }
 
       table {
-        margin: 0 auto;
+        margin: 0;
         color: var(--dark-text);
         background: white;
         border: 1px solid #cbd5e1;
@@ -186,12 +185,12 @@
         color: white;
         height: 40px;
         text-align: left;
-        padding: 10px 15px;
+        padding: 2px 5px;
         font-weight: 600;
       }
 
       table th, table td {
-        padding: 10px 15px;
+        padding: 2px 5px;
         border: 1px solid #e2e8f0;
       }
 
@@ -221,11 +220,11 @@
       }
       
       .green_cell {
-        background-color: #bbf7d0;
+        color: #008f32;
       }
       
       .red_cell {
-        background-color: #fecaca;
+        color: #ff2828;
       }
       
       .bold_cell {
@@ -233,15 +232,15 @@
       }
       
       .green_background {
-        background-color: #bbf7d0;
+        background-color: rgba(0, 143, 50, 0.25);
       }
       
       .user-cell {
         background-color: #fef3c7;
       }
       
-      .wide_col {
-        min-width: 150px;
+      .nar_col {
+        min-width: 160px;
       }
       
       .extra_wide_col {
@@ -249,33 +248,76 @@
       }
       
       .green_border {
-        box-shadow: 0 -3px 0 #34d399 inset,
-                    0 3px 0 #34d399 inset,
-                   -3px 0 0 #34d399 inset,
-                   3px 0 0 #34d399 inset;
+        box-shadow: 0 -3px 0 #008f32 inset,
+                    0 3px 0 #008f32 inset,
+                   -3px 0 0 #008f32 inset,
+                   3px 0 0 #008f32 inset;
       }
       
       .three_top {
-        border-top: 2px solid #0c4a6e;
-        border-left: 2px solid #0c4a6e;
-        border-right: 2px solid #0c4a6e;
+        border-top: 2px solid #008f32;
+        border-left: 2px solid #008f32;
+        border-right: 2px solid #008f32;
+        background-color: rgba(0, 143, 50, 0.25);
       }
       
       .three_middle {
-        border-left: 2px solid #0c4a6e;
-        border-right: 2px solid #0c4a6e;
+        border-left: 2px solid #008f32;
+        border-right: 2px solid #008f32;
+        background-color: rgba(0, 143, 50, 0.25);
       }
       
       .three_bottom {
-        border-bottom: 2px solid #0c4a6e;
-        border-left: 2px solid #0c4a6e;
-        border-right: 2px solid #0c4a6e;
+        border-bottom: 2px solid #008f32;
+        border-left: 2px solid #008f32;
+        border-right: 2px solid #008f32;
+        background-color: rgba(0, 143, 50, 0.25);
       }
       
       .footer-spacer {
         height: 40px; /* Match your desired bottom spacing */
         width: 100%;
         clear: both;
+      }
+      
+      /* Add this to your existing CSS */
+      .rotated-header {
+        height: 140px; /* Increase height to fit rotated text */
+        white-space: nowrap;
+        position: relative;
+      }
+
+      .rotated-header span {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        text-align: left;
+      }
+
+      /* Make the table header cells narrower */
+      .std_col.rotated-header {
+        max-width: 30px; /* Make columns narrower */
+        min-width: 30px;
+        width: 30px;
+        padding: 0;
+      }
+
+      /* Style for the scroll container */
+      .table-scroll-container {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        position: relative;
+        max-width: 100%; /* Add this to prevent overflow */
+        -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+      }
+
+      @keyframes pulse {
+        0% { opacity: 0.5; }
+        50% { opacity: 1; }
+        100% { opacity: 0.5; }
       }
 
       @media (max-width: 768px) {
@@ -351,11 +393,12 @@
         }
         
         table th, table td {
-          padding: 8px;
+          padding: 2px;
+          font-size: 1rem;
         }
         
-        .wide_col {
-          min-width: auto;
+        .nar_col {
+          min-width: 45px;
           max-width: none;
         }
       }
@@ -368,6 +411,10 @@
         
         .header-text > h1 {
           font-size: 1.8rem;
+        }
+        
+        .styled-table {
+          font-size: 0.5em;
         }
       }
     </style>
@@ -403,12 +450,40 @@
     <!-- Weeks Picks Section -->
     <section id="weeks-picks" class="weeks-picks-section">
       <h1 class="shrink-text-lg">This Week's Picks:</h1>
-      <p>Work in progress</p>
+      <div class="pick_table_div table_div_boarder">
+        <div class="table-scroll-container">
+          <table id="this_week_table" class="styled-table">
+            <thead>
+              <tr id="this_week_head_row">
+                <th scope="col" class="nar_col bottom_divider dark_background">Day of Week</th>
+                <th scope="col" class="nar_col bottom_divider dark_background">Date + Time</th>
+                <th scope="col" class="extra_wide_col bottom_divider dark_background">Question</th>
+                <th scope="col" class="nar_col right_divider bottom_divider dark_background">Correct Answer</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
     </section>
       
     <section id="last-picks" class="last-picks-section">
       <h1 class="shrink-text-lg">Last Week's Picks:</h1>
-      <p>Work in progress</p>
+      <div class="pick_table_div table_div_boarder">
+        <div class="table-scroll-container">
+          <table id="last_week_table" class="styled-table">
+            <thead>
+              <tr id="last_week_head_row">
+                <th scope="col" class="nar_col bottom_divider dark_background">Day of Week</th>
+                <th scope="col" class="nar_col bottom_divider dark_background">Date + Time</th>
+                <th scope="col" class="extra_wide_col bottom_divider dark_background">Question</th>
+                <th scope="col" class="nar_col right_divider bottom_divider dark_background">Correct Answer</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
     </section>
     <div class="footer-spacer"></div>
     
@@ -443,11 +518,12 @@
                     var col_add = 4
                 }
                 var cell = head_row.insertCell(col_add);
-                cell.innerHTML = player;
+                cell.innerHTML = '<div class="rotated-header"><span>' + player + '</span></div>';
                 cell.classList.add("std_col");
                 cell.classList.add("bottom_divider");
                 cell.classList.add("right_divider_soft");
                 cell.classList.add("dark_background");
+                cell.classList.add("rotated-header");
             }
             for (let day = 0; day < 7; day++){
                 var row1 = table.insertRow(day*3+1); 
@@ -584,11 +660,12 @@
             var table = document.getElementById("last_week_table");
             for (let i = 0; i < num_players; i++) {
                 var cell = head_row.insertCell(4+i);
-                cell.innerHTML = last_picks_data.values[3][5+i*3];
+                cell.innerHTML = '<div class="rotated-header"><span>' + last_picks_data.values[3][5+i*3] + '</span></div>';
                 cell.classList.add("std_col");
                 cell.classList.add("bottom_divider");
                 cell.classList.add("right_divider_soft");
                 cell.classList.add("dark_background");
+                cell.classList.add("rotated-header");
             }
             for (let day = 0; day < 7; day++){
                 var row1 = table.insertRow(day*3+1); 

@@ -369,8 +369,8 @@
         background-color: var(--primary-color);
         color: white;
         height: 40px;
-        text-align: left;
-        padding: 10px 15px;
+        text-align: center;
+        padding: 10px 0px;
         font-weight: 600;
       }
 
@@ -381,15 +381,6 @@
       table th, table td {
         padding: 10px 15px;
         border: 1px solid #e2e8f0;
-      }
-
-      .wide_col {
-        min-width: 200px;
-        max-width: 200px;
-      }
-
-      .med_col {
-        width: 20%;
       }
 
       .green_border {
@@ -403,7 +394,7 @@
         border-collapse: collapse;
         margin: 25px 0;
         font-size: 0.9em;
-        min-width: 400px;
+        min-width: 250px;
         width: 100%;
       }
 
@@ -424,6 +415,21 @@
         height: 0px; /* Match your desired bottom spacing */
         width: 100%;
         clear: both;
+      }
+      
+      table {
+          table-layout: fixed; /* Add this */
+          width: 80%;
+          max-width: 80%; /* Ensure table doesn't exceed container */
+          overflow-wrap: break-word; /* Allow words to break */
+      }
+
+      .wide_col {
+          width: 40%; /* Use percentage instead of fixed width */
+      }
+
+      .med_col {
+          width: 20%;
       }
 
       @media (max-width: 768px) {
@@ -508,17 +514,20 @@
           display: none;
         }
         
-        table {
-          font-size: 0.8rem;
-        }
-        
         table th, table td {
           padding: 8px;
         }
         
+        .styled-table {
+          font-size: 0.7em;
+        }
+
         .wide_col {
-          min-width: auto;
-          max-width: none;
+          width: 35%; /* Slightly smaller on mobile */
+        }
+
+        .med_col {
+          width: 15%;
         }
       }
       
@@ -538,6 +547,23 @@
           appearance: none;
           height: 50px;
           font-size: 20px;
+        }
+        
+        .styled-table {
+          font-size: 0.6em;
+        }
+        
+        .wide_col {
+          width: 30%;
+        }
+
+        .med_col {
+          width: 15%;
+        }
+
+        table th, table td {
+          padding: 5px;
+          word-break: break-word; /* Add this to allow words to break */
         }
       }
     </style>
